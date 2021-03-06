@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Dec 8, 2020 at 12:53 AM
--- Server version: 10.1.41-MariaDB-cll-lve
--- PHP Version: 7.2.7
+-- Host: localhost
+-- Generation Time: Mar 03, 2021 at 05:17 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.4.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -38,10 +37,10 @@ CREATE TABLE `xx_admin` (
   `password` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `resume` varchar(255) NOT NULL,
-  `role` tinyint(4) NOT NULL DEFAULT '1',
-  `is_active` tinyint(4) NOT NULL DEFAULT '1',
-  `is_verify` tinyint(4) NOT NULL DEFAULT '0',
-  `is_admin` tinyint(4) NOT NULL DEFAULT '0',
+  `role` tinyint(4) NOT NULL DEFAULT 1,
+  `is_active` tinyint(4) NOT NULL DEFAULT 1,
+  `is_verify` tinyint(4) NOT NULL DEFAULT 0,
+  `is_admin` tinyint(4) NOT NULL DEFAULT 0,
   `token` varchar(255) NOT NULL,
   `password_reset_code` varchar(255) NOT NULL,
   `last_ip` varchar(30) NOT NULL,
@@ -229,7 +228,7 @@ INSERT INTO `xx_admin` (`id`, `username`, `firstname`, `lastname`, `email`, `mob
 
 CREATE TABLE `xx_blog_categories` (
   `id` int(11) NOT NULL,
-  `lang_id` int(11) DEFAULT '1',
+  `lang_id` int(11) DEFAULT 1,
   `name` varchar(255) DEFAULT NULL,
   `slug` varchar(255) DEFAULT NULL,
   `description` varchar(500) DEFAULT NULL,
@@ -259,7 +258,7 @@ CREATE TABLE `xx_blog_comments` (
   `email` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `comment` varchar(5000) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -270,16 +269,16 @@ CREATE TABLE `xx_blog_comments` (
 
 CREATE TABLE `xx_blog_posts` (
   `id` int(11) NOT NULL,
-  `lang_id` int(11) DEFAULT '1',
+  `lang_id` int(11) DEFAULT 1,
   `title` varchar(500) DEFAULT NULL,
   `slug` varchar(500) DEFAULT NULL,
   `summary` varchar(1000) DEFAULT NULL,
-  `content` longtext,
+  `content` longtext DEFAULT NULL,
   `keywords` varchar(500) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
   `image_default` varchar(255) DEFAULT NULL,
   `image_small` varchar(255) DEFAULT NULL,
-  `user_id` int(11) DEFAULT '1',
+  `user_id` int(11) DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -331,8 +330,8 @@ CREATE TABLE `xx_categories` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `slug` varchar(50) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '1',
-  `top_category` tinyint(4) NOT NULL DEFAULT '0'
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `top_category` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -381,7 +380,7 @@ CREATE TABLE `xx_cities` (
   `name` varchar(30) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `state_id` int(11) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '1'
+  `status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -21669,9 +21668,9 @@ INSERT INTO `xx_cities` (`id`, `name`, `slug`, `state_id`, `status`) VALUES
 (21672, 'Ferdus', 'ferdus', 1714, 1),
 (21673, 'Gha\'nat', 'ghanat', 1714, 1),
 (21674, 'Gonabad', 'gonabad', 1714, 1),
-(21675, 'Kashmar', 'kashmar', 1714, 1);
+(21675, 'Kashmar', 'kashmar', 1714, 1),
+(21676, 'Mashad', 'mashad', 1714, 1);
 INSERT INTO `xx_cities` (`id`, `name`, `slug`, `state_id`, `status`) VALUES
-(21676, 'Mashad', 'mashad', 1714, 1),
 (21677, 'Mashhad', 'mashhad', 1714, 1),
 (21678, 'Neyshabur', 'neyshabur', 1714, 1),
 (21679, 'Qayen', 'qayen', 1714, 1),
@@ -48398,7 +48397,7 @@ CREATE TABLE `xx_companies` (
   `youtube_link` varchar(255) NOT NULL,
   `vimeo_link` varchar(255) NOT NULL,
   `linkedin_link` varchar(255) NOT NULL,
-  `is_active` tinyint(4) DEFAULT '1',
+  `is_active` tinyint(4) DEFAULT 1,
   `updated_date` datetime DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -48407,9 +48406,9 @@ CREATE TABLE `xx_companies` (
 --
 
 INSERT INTO `xx_companies` (`id`, `employer_id`, `company_name`, `company_slug`, `email`, `phone_no`, `website`, `category`, `no_of_employers`, `founded_date`, `company_logo`, `description`, `org_type`, `address`, `country`, `state`, `city`, `postcode`, `facebook_link`, `twitter_link`, `google_link`, `youtube_link`, `vimeo_link`, `linkedin_link`, `is_active`, `updated_date`) VALUES
-(1, 1, 'OnJob', 'onjob', 'onjob@gmail.com', '1145564754', 'www.domainname.com', 1, '1-10', '2020-05-31', 'uploads/company_logos/default.png', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has su', 'Public', 'GT Road', 231, 3924, 42800, '2554', '', '', '', '', '', '', 1, '2020-05-26 10:05:22'),
+(1, 1, 'OnJob', 'onjob', 'onjob@gmail.com', '628824341986', 'www.domainname.com', 1, '1-10', '2020-09-26', 'uploads/company_logos/default.png', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has su', 'Public', 'Ngagel Gede', 231, 12, 42800, '2554', '', '', '', '', '', '', 1, '2020-05-26 10:05:22'),
 (2, 2, 'Ozient', 'ozient', NULL, '', '', 25, '', NULL, 'uploads/company_logos/default.png', '', 'Private', '-address is near', 166, 2728, 31376, '50700', '', '', '', '', '', '', 1, NULL),
-(4, 4, 'Star Solutions', 'star-solutions', NULL, '', '', 25, '', NULL, 'uploads/company_logos/default.png', '', 'Private', '-kbh', 166, 2728, 5749, '123456', '', '', '', '', '', '', 1, NULL),
+(4, 4, 'Star Solutions', 'star-solutions', NULL, '', '', 25, '', NULL, 'uploads/company_logos/default.png', '', 'Private', '-kbh', 102, 2728, 5749, '123456', '', '', '', '', '', '', 1, NULL),
 (5, 5, 'Zcompny', 'zcompny', NULL, '', '', 1, '', NULL, 'uploads/company_logos/default.png', '', 'Public', 'asdfasdfs', 1, 42, 5909, '54000', '', '', '', '', '', '', 1, NULL);
 
 -- --------------------------------------------------------
@@ -48447,7 +48446,7 @@ CREATE TABLE `xx_countries` (
   `name` varchar(150) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `phonecode` int(11) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '1'
+  `status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -48705,6 +48704,17 @@ INSERT INTO `xx_countries` (`id`, `sortname`, `name`, `slug`, `phonecode`, `stat
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `xx_currency`
+--
+
+CREATE TABLE `xx_currency` (
+  `id` int(11) NOT NULL,
+  `code` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `xx_cv_shortlisted`
 --
 
@@ -48758,7 +48768,7 @@ CREATE TABLE `xx_email_templates` (
   `slug` varchar(220) NOT NULL,
   `subject` varchar(255) NOT NULL,
   `body` text NOT NULL,
-  `last_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `last_update` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -48817,10 +48827,10 @@ CREATE TABLE `xx_employers` (
   `state` int(11) NOT NULL,
   `city` int(11) NOT NULL,
   `address` varchar(255) NOT NULL,
-  `role` tinyint(4) NOT NULL DEFAULT '1',
-  `is_active` tinyint(4) NOT NULL DEFAULT '1',
-  `is_verify` tinyint(4) NOT NULL DEFAULT '0',
-  `is_admin` tinyint(4) NOT NULL DEFAULT '0',
+  `role` tinyint(4) NOT NULL DEFAULT 1,
+  `is_active` tinyint(4) NOT NULL DEFAULT 1,
+  `is_verify` tinyint(4) NOT NULL DEFAULT 0,
+  `is_admin` tinyint(4) NOT NULL DEFAULT 0,
   `token` varchar(255) NOT NULL,
   `password_reset_code` varchar(255) NOT NULL,
   `last_ip` varchar(30) NOT NULL,
@@ -48897,8 +48907,8 @@ CREATE TABLE `xx_footer_settings` (
   `id` int(11) NOT NULL,
   `title` varchar(150) NOT NULL,
   `grid_column` int(11) NOT NULL,
-  `content` text CHARACTER SET utf32 COLLATE utf32_unicode_ci,
-  `updated_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `content` text CHARACTER SET utf32 COLLATE utf32_unicode_ci DEFAULT NULL,
+  `updated_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -48907,9 +48917,9 @@ CREATE TABLE `xx_footer_settings` (
 
 INSERT INTO `xx_footer_settings` (`id`, `title`, `grid_column`, `content`, `updated_date`) VALUES
 (196, 'about_us', 4, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing, Quisque lobortis elit.\r\nLorem ipsum dolor sit amet, consectetur adipiscing, Quisque lobortis elit.Lorem ipsum dolor sit amet, consectetur adipiscing, Quisque lobortis elit.Lorem ipsum dolor sit amet, consectetur adipiscing, Quisque lobortis elit.</p>', '2020-11-18 07:32:46'),
-(197, 'quick_links', 3, '<ul class=\"footer-nav\">\r\n <li><a href=\"https://bilalmart.com/onjob/jobs\">Search Jobs</a></li>\r\n <li><a href=\"https://bilalmart.com/onjob/jobs-by-category\">Jobs by Category</a></li>\r\n <li><a href=\"https://bilalmart.com/onjob/jobs-by-location\">Jobs by Location</a></li>\r\n <li><a href=\"https://bilalmart.com/onjob/company\">Listed Companies</a></li>\r\n</ul>', '2020-11-18 07:32:46'),
-(198, 'employers', 3, '<ul class=\"footer-nav\">\r\n            <li><a href=\"https://bilalmart.com/onjob/employers\">Pricing Plans</a></li>\r\n            <li><a href=\"https://bilalmart.com/onjob/employers/auth/registration\">Create Account</a></li>\r\n            <li><a href=\"https://bilalmart.com/onjob/employers/job/post\">Post a Job</a></li>\r\n<li><a href=\"https://bilalmart.com/onjob/contact\">Contact Us</a></li>\r\n</ul>', '2020-11-18 07:32:46'),
-(199, 'job_seekers', 2, '<ul class=\"footer-nav\">\r\n<li><a href=\"https://bilalmart.com/onjob/auth/registration\">Create Account</a></li>\r\n<li><a href=\"https://bilalmart.com/onjob/myjobs/matching\">Matching Jobs</a></li>\r\n<li><a href=\"https://bilalmart.com/onjob/jobs\">Apply for Job</a></li>\r\n<li><a href=\"https://bilalmart.com/onjob/myjobs\">Applied Jobs</a></li>\r\n</ul>', '2020-11-18 07:32:46');
+(197, 'quick_links', 3, '<ul class=\"footer-nav\">\r\n <li><a href=\"localhost/onjob/jobs\">Search Jobs</a></li>\r\n <li><a href=\"localhost/onjob/jobs-by-category\">Jobs by Category</a></li>\r\n <li><a href=\"http://localhost/onjob/jobs-by-location\">Jobs by Location</a></li>\r\n</ul>', '2020-11-18 07:32:46'),
+(198, 'employers', 3, '<ul class=\"footer-nav\">\r\n            <li><a href=\"/onjob/employers\">Pricing Plans</a></li>\r\n            <li><a href=\"/onjob/employers/auth/registration\">Create Account</a></li>\r\n            <li><a href=\"/onjob/employers/job/post\">Post a Job</a></li>\r\n<li><a href=\"/onjob/contact\">Contact Us</a></li>\r\n</ul>', '2020-11-18 07:32:46'),
+(199, 'job_seekers', 2, '<ul class=\"footer-nav\">\r\n<li><a href=\"/onjob/auth/registration\">Create Account</a></li>\r\n<li><a href=\"/onjob/myjobs/matching\">Matching Jobs</a></li>\r\n<li><a href=\"/onjob/jobs\">Apply for Job</a></li>\r\n<li><a href=\"/onjob/myjobs\">Applied Jobs</a></li>\r\n</ul>', '2020-11-18 07:32:46');
 
 -- --------------------------------------------------------
 
@@ -48924,7 +48934,7 @@ CREATE TABLE `xx_general_settings` (
   `application_name` varchar(255) DEFAULT NULL,
   `timezone` varchar(255) DEFAULT NULL,
   `currency` varchar(100) DEFAULT NULL,
-  `copyright` tinytext,
+  `copyright` tinytext DEFAULT NULL,
   `admin_email` varchar(225) NOT NULL,
   `email_from` varchar(100) NOT NULL,
   `smtp_host` varchar(255) DEFAULT NULL,
@@ -48945,8 +48955,8 @@ CREATE TABLE `xx_general_settings` (
   `paypal_live_url` varchar(255) DEFAULT NULL,
   `paypal_email` varchar(255) DEFAULT NULL,
   `paypal_cur_code` varchar(5) DEFAULT NULL,
-	`paypal_client_id` varchar(255) DEFAULT NULL,
-  `paypal_status` tinyint(4) NOT NULL DEFAULT '1',
+  `paypal_client_id` varchar(255) DEFAULT NULL,
+  `paypal_status` tinyint(4) NOT NULL DEFAULT 1,
   `stripe_secret_key` varchar(255) DEFAULT NULL,
   `stripe_publish_key` varchar(255) DEFAULT NULL,
   `default_language` varchar(255) DEFAULT NULL COMMENT 'set from the Languages section in admin side',
@@ -48959,8 +48969,8 @@ CREATE TABLE `xx_general_settings` (
 --
 
 INSERT INTO `xx_general_settings` (`id`, `favicon`, `logo`, `application_name`, `timezone`, `currency`, `copyright`, `admin_email`, `email_from`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `facebook_link`, `twitter_link`, `google_link`, `youtube_link`, `linkedin_link`, `instagram_link`, `recaptcha_secret_key`, `recaptcha_site_key`, `recaptcha_lang`, `paypal_sandbox`, `paypal_sandbox_url`, `paypal_live_url`, `paypal_email`, `paypal_cur_code`, `paypal_client_id`, `paypal_status`, `stripe_secret_key`, `stripe_publish_key`, `default_language`, `created_date`, `updated_date`) VALUES
-(1, 'assets/img/c3f8a7bbd04294d5e5867f1f27e0de11.png', 'assets/img/7d96e222e45339fac09959dc2d5ff4a2.png', 'OnJob.com', 'Asia/Jakarta', 'INR', 'Copyright © 2020 OnJob - All Rights Reserved.', 'info@domain.com', 'info@domain.com', 'ssl://smtp.gmail.com', 465, 'info@domain.com', 'info@domain.com', 'https://facebook.com', 'https://twitter.com', 'https://google.com', 'https://youtube.com', 'https://linkedin.com', 'https://instagram.com', '', '', 'en', 1, 'https://sandbox.paypal.com/cgi-bin/webscr', 'https://www.paypal.com/cgi-bin/webscr', 'sb-waxpi431295@business.example.com', 'USD', 'AW1tZTsRtL362R1TvXxV4J6KsXDDszBpxqLpty-dDNTpL4B3O5fOWsyGSGJ3yNGTCxqhCsZYWqEqAuc-', 1, 'sk_test_TMbUaFbCy6vreanBfGa64frP00mxfxxHiv', 'pk_test_Vq7vPui3v2LZPWCzT9LBeaVv00RAS7HwZ1', 'english', '2020-06-20 10:06:55', '2020-06-20 10:06:55');
-COMMIT;
+(1, 'assets/img/c3f8a7bbd04294d5e5867f1f27e0de11.png', 'assets/img/7d96e222e45339fac09959dc2d5ff4a2.png', 'Job', 'Asia/Jakarta', 'IDR', 'Copyright © 2020 OnJob - All Rights Reserved.', 'info@domain.com', 'info@domain.com', 'ssl://smtp.gmail.com', 465, 'info@domain.com', 'info@domain.com', 'https://facebook.com', 'https://twitter.com', 'https://google.com', 'https://youtube.com', 'https://linkedin.com', 'https://instagram.com', '', '', 'en', 1, 'https://sandbox.paypal.com/cgi-bin/webscr', 'https://www.paypal.com/cgi-bin/webscr', 'sb-waxpi431295@business.example.com', 'USD', 'AW1tZTsRtL362R1TvXxV4J6KsXDDszBpxqLpty-dDNTpL4B3O5fOWsyGSGJ3yNGTCxqhCsZYWqEqAuc-', 1, 'sk_test_TMbUaFbCy6vreanBfGa64frP00mxfxxHiv', 'pk_test_Vq7vPui3v2LZPWCzT9LBeaVv00RAS7HwZ1', 'english', '2020-06-20 10:06:55', '2020-06-20 10:06:55');
+
 -- --------------------------------------------------------
 
 --
@@ -48971,8 +48981,8 @@ CREATE TABLE `xx_industries` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `slug` varchar(50) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '1',
-  `top_industry` tinyint(4) NOT NULL DEFAULT '0'
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `top_industry` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -49128,7 +49138,7 @@ CREATE TABLE `xx_job_post_featured` (
   `job_id` int(11) NOT NULL,
   `package_id` int(11) NOT NULL,
   `payment_id` int(11) NOT NULL,
-  `is_featured` int(11) NOT NULL DEFAULT '0'
+  `is_featured` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -49181,7 +49191,7 @@ CREATE TABLE `xx_languages` (
 --
 
 INSERT INTO `xx_languages` (`lang_id`, `lang_name`) VALUES
-(1, 'Urdu'),
+(1, 'Indonesia'),
 (2, 'English');
 
 -- --------------------------------------------------------
@@ -49194,12 +49204,12 @@ CREATE TABLE `xx_packages` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
-  `price` double NOT NULL,
+  `price` varchar(255) NOT NULL,
   `detail` varchar(255) NOT NULL,
   `no_of_posts` int(11) NOT NULL,
   `no_of_days` int(11) NOT NULL,
   `package_for` int(11) NOT NULL,
-  `is_active` int(11) NOT NULL DEFAULT '1',
+  `is_active` int(11) NOT NULL DEFAULT 1,
   `sort_order` int(11) NOT NULL,
   `created_date` datetime NOT NULL,
   `updated_date` datetime NOT NULL
@@ -49210,10 +49220,10 @@ CREATE TABLE `xx_packages` (
 --
 
 INSERT INTO `xx_packages` (`id`, `title`, `slug`, `price`, `detail`, `no_of_posts`, `no_of_days`, `package_for`, `is_active`, `sort_order`, `created_date`, `updated_date`) VALUES
-(7, 'Basic', '', 50, 'xyz', 5, 30, 1, 1, 2, '2020-05-24 09:05:33', '2020-05-26 10:05:49'),
-(6, 'Silver', '', 150, 'Some text here', 5, 45, 1, 1, 3, '2020-05-24 10:05:42', '2020-05-26 10:05:00'),
-(5, 'Free', '', 0, 'Some text here', 5, 30, 1, 1, 4, '2020-05-24 10:05:25', '2020-05-26 10:05:12'),
-(8, 'Unlimited CV Search', 'ucvs', 200, 'csvss', 100, 90, 1, 1, 1, '2020-10-25 23:39:56', '2020-10-25 23:39:57');
+(7, 'Basic', '', '<h2>100.000</h2>', 'xyz<br>', 5, 30, 1, 1, 2, '2020-05-24 09:05:33', '2020-05-26 10:05:49'),
+(6, 'Silver \r\n<br><b>BEST SELLER</b>', '', '<h2>150.000</h2>', 'Some text here', 5, 45, 1, 1, 3, '2020-05-24 10:05:42', '2020-05-26 10:05:00'),
+(5, 'Free', '', '0', 'Some text here', 5, 30, 1, 1, 4, '2020-05-24 10:05:25', '2020-05-26 10:05:12'),
+(8, 'Unlimited CV Search', 'ucvs', '<h2>300.000</h2>', 'csvss', 100, 90, 1, 1, 1, '2020-10-25 23:39:56', '2020-10-25 23:39:57');
 
 -- --------------------------------------------------------
 
@@ -49233,7 +49243,7 @@ CREATE TABLE `xx_packages_bought` (
   `buy_date` datetime NOT NULL,
   `renewal_date` datetime DEFAULT NULL,
   `updrade_date` datetime DEFAULT NULL,
-  `is_active` tinyint(4) NOT NULL DEFAULT '1'
+  `is_active` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -49266,7 +49276,7 @@ CREATE TABLE `xx_pages` (
   `keywords` varchar(255) NOT NULL,
   `content` longtext NOT NULL,
   `sort_order` int(11) NOT NULL,
-  `is_active` tinyint(4) NOT NULL DEFAULT '1',
+  `is_active` tinyint(4) NOT NULL DEFAULT 1,
   `created_date` datetime NOT NULL,
   `updated_date` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -49296,7 +49306,7 @@ CREATE TABLE `xx_payments` (
   `payer_email` varchar(255) DEFAULT NULL,
   `payment_status` varchar(50) DEFAULT NULL,
   `purchased_plan` varchar(255) DEFAULT NULL,
-  `payment_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `payment_date` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -49361,8 +49371,8 @@ CREATE TABLE `xx_seeker_applied_job` (
   `employer_id` int(11) NOT NULL,
   `job_id` int(11) NOT NULL,
   `cover_letter` longtext NOT NULL,
-  `is_shortlisted` tinyint(4) NOT NULL DEFAULT '0',
-  `is_interviewed` tinyint(4) NOT NULL DEFAULT '0',
+  `is_shortlisted` tinyint(4) NOT NULL DEFAULT 0,
+  `is_interviewed` tinyint(4) NOT NULL DEFAULT 0,
   `applied_date` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -49493,9 +49503,9 @@ CREATE TABLE `xx_site_languages` (
   `id` int(11) NOT NULL,
   `display_name` varchar(100) NOT NULL,
   `directory_name` varchar(100) NOT NULL,
-  `is_default` tinyint(4) NOT NULL DEFAULT '0',
-  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `is_default` tinyint(4) NOT NULL DEFAULT 0,
+  `created_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -49517,7 +49527,7 @@ CREATE TABLE `xx_skills` (
   `name` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `sort_order` tinyint(4) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '1'
+  `status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -49541,8 +49551,8 @@ CREATE TABLE `xx_states` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
   `slug` varchar(255) NOT NULL,
-  `country_id` int(11) NOT NULL DEFAULT '1',
-  `status` tinyint(4) NOT NULL DEFAULT '1'
+  `country_id` int(11) NOT NULL DEFAULT 1,
+  `status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -49561,7 +49571,7 @@ INSERT INTO `xx_states` (`id`, `name`, `slug`, `country_id`, `status`) VALUES
 (9, 'Daman and Diu', 'daman-and-diu', 101, 1),
 (10, 'Delhi', 'delhi', 101, 1),
 (11, 'Goa', 'goa', 101, 1),
-(12, 'Gujarat', 'gujarat', 101, 1),
+(12, 'Jakarta', 'jakarta', 231, 1),
 (13, 'Haryana', 'haryana', 101, 1),
 (14, 'Himachal Pradesh', 'himachal-pradesh', 101, 1),
 (15, 'Jammu and Kashmir', 'jammu-and-kashmir', 101, 1),
@@ -52120,10 +52130,10 @@ INSERT INTO `xx_states` (`id`, `name`, `slug`, `country_id`, `status`) VALUES
 (2577, 'Rapti', 'rapti', 153, 1),
 (2578, 'Sagarmatha', 'sagarmatha', 153, 1),
 (2579, 'Seti', 'seti', 153, 1),
-(2580, 'Bonaire', 'bonaire', 154, 1);
-INSERT INTO `xx_states` (`id`, `name`, `slug`, `country_id`, `status`) VALUES
+(2580, 'Bonaire', 'bonaire', 154, 1),
 (2581, 'Curacao', 'curacao', 154, 1),
-(2582, 'Saba', 'saba', 154, 1),
+(2582, 'Saba', 'saba', 154, 1);
+INSERT INTO `xx_states` (`id`, `name`, `slug`, `country_id`, `status`) VALUES
 (2583, 'Sint Eustatius', 'sint-eustatius', 154, 1),
 (2584, 'Sint Maarten', 'sint-maarten', 154, 1),
 (2585, 'Amsterdam', 'amsterdam', 155, 1),
@@ -53363,10 +53373,10 @@ INSERT INTO `xx_states` (`id`, `name`, `slug`, `country_id`, `status`) VALUES
 (3840, 'East Sussex', 'east-sussex', 230, 1),
 (3841, 'East Yorkshire', 'east-yorkshire', 230, 1),
 (3842, 'England', 'england', 230, 1),
-(3843, 'Essex', 'essex', 230, 1);
-INSERT INTO `xx_states` (`id`, `name`, `slug`, `country_id`, `status`) VALUES
+(3843, 'Essex', 'essex', 230, 1),
 (3844, 'Fermanagh', 'fermanagh', 230, 1),
-(3845, 'Fife', 'fife', 230, 1),
+(3845, 'Fife', 'fife', 230, 1);
+INSERT INTO `xx_states` (`id`, `name`, `slug`, `country_id`, `status`) VALUES
 (3846, 'Flintshire', 'flintshire', 230, 1),
 (3847, 'Fulham', 'fulham', 230, 1),
 (3848, 'Gainsborough', 'gainsborough', 230, 1),
@@ -53653,7 +53663,7 @@ INSERT INTO `xx_states` (`id`, `name`, `slug`, `country_id`, `status`) VALUES
 CREATE TABLE `xx_subscribers` (
   `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -53663,7 +53673,8 @@ CREATE TABLE `xx_subscribers` (
 INSERT INTO `xx_subscribers` (`id`, `email`, `created_at`) VALUES
 (1, 'officialarea423@gmail.com', '2020-11-15 15:39:59'),
 (2, 'jobstuff423@gmail.com', '2020-11-15 15:39:59'),
-(4, 'codeglamour1@gmail.com', '2020-11-17 10:29:08');
+(4, 'codeglamour1@gmail.com', '2020-11-17 10:29:08'),
+(5, 'mmmm@gmail.com', '2021-03-03 11:01:37');
 
 -- --------------------------------------------------------
 
@@ -53677,9 +53688,9 @@ CREATE TABLE `xx_testimonials` (
   `testimonial_by` varchar(225) NOT NULL,
   `comp_and_desig` varchar(255) NOT NULL,
   `photo` varchar(255) DEFAULT NULL,
-  `is_default` int(11) NOT NULL DEFAULT '0',
-  `status` int(11) NOT NULL DEFAULT '0',
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `is_default` int(11) NOT NULL DEFAULT 0,
+  `status` int(11) NOT NULL DEFAULT 0,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -53723,11 +53734,11 @@ CREATE TABLE `xx_users` (
   `current_salary` varchar(40) NOT NULL,
   `expected_salary` varchar(40) NOT NULL,
   `resume` varchar(255) NOT NULL,
-  `role` tinyint(4) NOT NULL DEFAULT '1',
-  `profile_completed` tinyint(4) NOT NULL DEFAULT '0',
-  `is_active` tinyint(4) NOT NULL DEFAULT '1',
-  `is_verify` tinyint(4) NOT NULL DEFAULT '0',
-  `is_admin` tinyint(4) NOT NULL DEFAULT '0',
+  `role` tinyint(4) NOT NULL DEFAULT 1,
+  `profile_completed` tinyint(4) NOT NULL DEFAULT 0,
+  `is_active` tinyint(4) NOT NULL DEFAULT 1,
+  `is_verify` tinyint(4) NOT NULL DEFAULT 0,
+  `is_admin` tinyint(4) NOT NULL DEFAULT 0,
   `token` varchar(255) NOT NULL,
   `password_reset_code` varchar(255) NOT NULL,
   `last_ip` varchar(30) NOT NULL,
@@ -53740,9 +53751,10 @@ CREATE TABLE `xx_users` (
 --
 
 INSERT INTO `xx_users` (`id`, `firstname`, `lastname`, `email`, `password`, `dob`, `age`, `profile_picture`, `mobile_no`, `nationality`, `category`, `job_title`, `description`, `gender`, `marital_status`, `country`, `state`, `city`, `postcode`, `address`, `experience`, `education_level`, `skills`, `current_salary`, `expected_salary`, `resume`, `role`, `profile_completed`, `is_active`, `is_verify`, `is_admin`, `token`, `password_reset_code`, `last_ip`, `created_date`, `updated_date`) VALUES
-(1, 'Demo', 'User', 'user@onjob.com', '$2y$10$rHYvKenq9xtPHrvbmGBLXOwL6pGrb9X7lfpEA5TagrJ.t2pGk.JDS', '2020-05-01', 11, 'uploads/profile_pictures/2371115986d7a15f9904cb4a355cf5f0.jpg', '00145975456', '166', '25', 'Accountant', '', '', '', '166', '2728', '31376', '', 'Rehman Shaheed Road Gujrat', '2-5', '1', 'HTML5,CSS3,PHP,Accounts,Ms office', '500', '1000', './uploads/resume/d146f081014e83dcf1156c0fb7900787.pdf', 1, 1, 1, 1, 0, '', '', '', '2020-05-26 10:05:04', '2020-10-26 03:10:10'),
+(1, 'Demo', 'User', 'user@onjob.com', '$2y$10$Ftdv.pM/i.qHWDlFdd1aKuHnws0jd1gx0VAtE9YfFxfXgz8ChaMC6', '2020-05-01', 11, 'uploads/profile_pictures/2371115986d7a15f9904cb4a355cf5f0.jpg', '00145975456', '166', '25', 'Accountant', '', '', '', '166', '2728', '31376', '', 'Rehman Shaheed Road Gujrat', '2-5', '1', 'HTML5,CSS3,PHP,Accounts,Ms office', '500', '1000', './uploads/resume/d146f081014e83dcf1156c0fb7900787.pdf', 1, 1, 1, 1, 0, '', '', '', '2020-05-26 10:05:04', '2021-03-03 00:00:00'),
 (3, 'waqas', 'dar', 'waqas@onjob.com', '$2y$10$rHYvKenq9xtPHrvbmGBLXOwL6pGrb9X7lfpEA5TagrJ.t2pGk.JDS', '1945-05-01', 11, 'dfg', '3132465', '166', '25', 'Developer', '', 'm', 'married', '166', '2728', '31439', '001', 'bkhshu', '5-10', '6', 'Python', '3000', '5500', 'sdf', 1, 1, 1, 1, 0, 'a', 'a', '12', '2020-10-26 02:08:05', '2020-10-28 08:10:02'),
-(45, 'Zain', 'ul abideen', 'officialarea423@gmail.com', '$2y$10$8bkIRLHXscpdAdBQULzZEuzzk9Um3CStCAH8u//v7cTtWnzwNGjQm', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 0, 1, 1, 0, '', '', '', '2020-11-16 00:00:00', '2020-11-16 00:00:00');
+(45, 'Zain', 'ul abideen', 'officialarea423@gmail.com', '$2y$10$8bkIRLHXscpdAdBQULzZEuzzk9Um3CStCAH8u//v7cTtWnzwNGjQm', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 0, 1, 1, 0, '', '', '', '2020-11-16 00:00:00', '2020-11-16 00:00:00'),
+(46, 'Yzu', 'asasa', 'admin@login.com', '$2y$10$Ftdv.pM/i.qHWDlFdd1aKuHnws0jd1gx0VAtE9YfFxfXgz8ChaMC6', '', 0, '', '909090090909090', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 0, 1, 0, 0, '', '', '', '2021-03-03 00:00:00', '2021-03-03 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -53830,6 +53842,12 @@ ALTER TABLE `xx_contact_us`
 -- Indexes for table `xx_countries`
 --
 ALTER TABLE `xx_countries`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `xx_currency`
+--
+ALTER TABLE `xx_currency`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -54095,6 +54113,12 @@ ALTER TABLE `xx_countries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
 
 --
+-- AUTO_INCREMENT for table `xx_currency`
+--
+ALTER TABLE `xx_currency`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `xx_cv_shortlisted`
 --
 ALTER TABLE `xx_cv_shortlisted`
@@ -54272,7 +54296,7 @@ ALTER TABLE `xx_states`
 -- AUTO_INCREMENT for table `xx_subscribers`
 --
 ALTER TABLE `xx_subscribers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `xx_testimonials`
@@ -54284,7 +54308,7 @@ ALTER TABLE `xx_testimonials`
 -- AUTO_INCREMENT for table `xx_users`
 --
 ALTER TABLE `xx_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `xx_visa_status`

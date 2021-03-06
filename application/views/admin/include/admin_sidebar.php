@@ -152,21 +152,6 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
       </ul>
 
       <ul class="sidebar-menu">
-        <li id="blog" class="treeview">
-            <a href="#">
-              <i class="fa fa-file-text"></i> <span>Blog</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li id=""><a href="<?= base_url('admin/blog'); ?>"><i class="fa fa-circle-o"></i>Posts</a></li>
-              <li id=""><a href="<?= base_url('admin/blog/category'); ?>"><i class="fa fa-circle-o"></i>Category</a></li>
-            </ul>
-          </li>
-      </ul>
-
-      <ul class="sidebar-menu">
         <li id="payment" class="treeview">
             <a href="#">
               <i class="fa fa-money"></i> <span>Payment</span>
@@ -267,16 +252,16 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
               <i class="fa fa-cogs"></i> <span>General Settings</span>
             </a>
           </li>
-          <li id="template" class="treeview">
+          <!-- <li id="template" class="treeview">
             <a href="<?= base_url('admin/general_settings/email_templates'); ?>">
                   <i class="fa fa-cogs"></i> <span>Email Templates Settings</span>
             </a>
-        </li>
-        <li id="languages" class="treeview">
-            <a href="<?= base_url('admin/languages'); ?>">
-                  <i class="fa fa-cogs"></i> <span>Language Settings</span>
-            </a>
-        </li>
+        </li> -->
+          <!-- <li id="languages" class="treeview">
+              <a href="<?= base_url('admin/languages'); ?>">
+                    <i class="fa fa-cogs"></i> <span>Language Settings</span>
+              </a>
+          </li> -->
       </ul> 
 
 

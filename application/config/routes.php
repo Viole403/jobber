@@ -80,11 +80,6 @@ $route['jobs-by-category'] = 'jobs/jobs_by_category';
 $route['jobs-by-industry'] = 'jobs/jobs_by_industry';
 $route['jobs-by-location'] = 'jobs/jobs_by_location';
 
-// setting blog category
-$route['admin/blog/category/add'] = 'admin/blog/category_add';
-$route['admin/blog/category/edit/(:num)'] = 'admin/blog/category_edit/$1';
-$route['admin/blog/category/del/(:num)'] = 'admin/blog/category_del/$1';
-
 
 $route['employers/dashboard'] = 'employers/account/dashboard';
 

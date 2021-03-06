@@ -475,33 +475,33 @@
     }
 
     //  get blog categories
-    function get_blog_categories_list()
-    {
-        $ci = & get_instance();
-        return $ci->db->get('xx_blog_categories')->result_array();
-    }
+    // function get_blog_categories_list()
+    // {
+    //     $ci = & get_instance();
+    //     return $ci->db->get('xx_blog_categories')->result_array();
+    // }
 
     //  get blog posted categories
-    function get_blog_posted_categories_list()
-    {
-        $ci = & get_instance();
-        $ci->db->select('
-            xx_blog_posts.category_id,
-            xx_blog_categories.id,
-            xx_blog_categories.slug,
-            xx_blog_categories.name
-            ');
-        $ci->db->join('xx_blog_posts','xx_blog_posts.category_id = xx_blog_categories.id');
-        $ci->db->group_by('xx_blog_posts.category_id');
-        return $ci->db->get('xx_blog_categories')->result_array();
-    }
+    // function get_blog_posted_categories_list()
+    // {
+    //     $ci = & get_instance();
+    //     $ci->db->select('
+    //         xx_blog_posts.category_id,
+    //         xx_blog_categories.id,
+    //         xx_blog_categories.slug,
+    //         xx_blog_categories.name
+    //         ');
+    //     $ci->db->join('xx_blog_posts','xx_blog_posts.category_id = xx_blog_categories.id');
+    //     $ci->db->group_by('xx_blog_posts.category_id');
+    //     return $ci->db->get('xx_blog_categories')->result_array();
+    // }
 
-    // -----------------------------------------------------------------------------
-    function get_blog_categories_name($id)
-    {
-        $ci = & get_instance();
-        return $ci->db->get_where('xx_blog_categories', array('id' => $id))->row_array()['name'];
-    }
+    // // -----------------------------------------------------------------------------
+    // function get_blog_categories_name($id)
+    // {
+    //     $ci = & get_instance();
+    //     return $ci->db->get_where('xx_blog_categories', array('id' => $id))->row_array()['name'];
+    // }
 
     // -----------------------------------------------------------------------------
     function get_post_tags_by_id($post_id)

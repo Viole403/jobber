@@ -27,11 +27,11 @@
         <thead>
         <tr>
           <th>ID</th>
-          <th>TXN ID</th>
+          <!-- <th>TXN ID</th> -->
           <th>Package Name</th>
           <th>Amount</th>
           <th>Date</th>
-          <th>Payment Mode</th>
+          <!-- <th>Payment Mode</th> -->
           <th>Status</th>
         </tr>
         </thead>
@@ -39,11 +39,11 @@
           <?php $i=1; foreach($payment_detail as $row): ?>
             <tr>
               <td><?= $i++ ?></td>
-              <td><?= $row['txn_id'] ?></td>
+              <!-- <td><?= $row['txn_id'] ?></td> -->
               <td><?= get_pkg_name($row['purchased_plan']) ?></td>
               <td><?= $row['payment_amount'] ?></td>
               <td><?= date_time($row['payment_date']) ?></td>
-              <td><?= $row['payment_method'] ?></td>
+              <!-- <td><?= $row['payment_method'] ?></td> -->
               <td><?= $row['payment_status'] ?></td>
             </tr>
           <?php endforeach; ?>

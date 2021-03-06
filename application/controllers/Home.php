@@ -23,7 +23,7 @@ class Home extends Main_Controller {
 
 		$data['companies'] =  $this->home_model->get_companies_having_active_jobs(8);
 
-		$data['posts'] = $this->home_model->get_latest_blog_post();
+		// $data['posts'] = $this->home_model->get_latest_blog_post();
 
 		$data['title'] = trans('label_home');
 		$data['meta_description'] = 'your meta description here';

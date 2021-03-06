@@ -29,8 +29,7 @@
      <li role="presentation"><a href="#email" aria-controls="email" role="tab" data-toggle="tab">Email Setting</a></li>
      <li role="presentation"><a href="#social" aria-controls="social" role="tab" data-toggle="tab">Social Media Setting</a></li>
      <li role="presentation"><a href="#reCAPTCHA" aria-controls="reCAPTCHA" role="tab" data-toggle="tab">Google reCAPTCHA</a></li>
-     <li role="presentation"><a href="#payments" aria-controls="payments" role="tab" data-toggle="tab">Payment Settings</a></li>
-   </ul>
+  </ul>
    
    <!-- Tab panes -->
    <div class="tab-content">
@@ -270,25 +269,6 @@
 
 <hr />
 
-<div class="row form-group">
-  <div class="col-6">
-    <label>STRIPE Payment Settings</label>
-  </div>
-  <div class="col-6">
-    &nbsp;
-  </div>
-</div>
-
-<div class="row form-group">
-  <div class="col-6">
-    <label>Secret Key</label>
-    <input type="text" name="stripe_secret_key" value="<?=$general_settings['stripe_secret_key'] ;?>" class="form-control" placeholder="">
-  </div>
-  <div class="col-6">
-    <label>Publishable Key</label>
-    <input type="text" name="stripe_publish_key" value="<?=$general_settings['stripe_publish_key'] ;?>" class="form-control" placeholder="">
-  </div>
-</div>
 </div>
 
 </div>
